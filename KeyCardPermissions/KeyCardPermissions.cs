@@ -74,7 +74,7 @@ namespace KeyCardPermissions
             //}
 
 
-            Log.Info("KeyCardPermissions has been reloaded");
+            Log.Info("KeyCardPermissions has been loaded");
 
         }
         /// <summary>
@@ -102,6 +102,8 @@ namespace KeyCardPermissions
             //    ServerEvents.RespawningTeam -= currentSpectator.OnTeamSpawn;
             //}
             //currentSpectator = null;
+
+            Log.Info("KeyCardPermissions has been unloaded");
         }
     }
 }

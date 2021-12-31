@@ -15,14 +15,14 @@ namespace KeyCardPermissions.Patches
     {
 
         [HarmonyPrefix]
-        public static bool OverloadForceReloadPre(        /*ScpVoiceProfile __instance*/)
+        public static bool OverloadForceReloadPre()
         {
             return true;
 
         }
 
         [HarmonyPostfix]
-        public static void OverloadForceReloadPost(/*ref ScpVoiceProfile __instance*/)
+        public static void OverloadForceReloadPost()
         {
 
             try
@@ -33,11 +33,18 @@ namespace KeyCardPermissions.Patches
                 {
                     return;
                 }
+
+
                 bool myvalue = (bool)Traverse.Create(typeof(InventoryItemLoader)).Field("_loaded").GetValue();
                 Dictionary<global::ItemType, InventorySystem.Items.ItemBase> curr_loaded_items =
                     (Dictionary<ItemType, InventorySystem.Items.ItemBase>)Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").GetValue();
 
                 Dictionary<string, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
+                if (config_keys == null || config_keys.Count == 0)
+                {
+                    return;
+                }
+
                 List<string> keyList = new List<string>(config_keys.Keys);
                 List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>> items_to_replace = new List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>>();
                 foreach (KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase> entry in curr_loaded_items)
@@ -78,10 +85,9 @@ namespace KeyCardPermissions.Patches
 
                 Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").SetInstanceField("_loadedItems", curr_loaded_items);
             }
-            catch (System.Exception e)
+            catch (Exception harmony_error)
             {
-                //Log.Error($"OverloadForceReloadPost.OverloadForceReloadPost: {e}\n{e.StackTrace}\n{System.Environment.StackTrace}");
-                Log.Info($"OverloadForceReloadPost.OverloadForceReloadPost: {e}\n{e.StackTrace}\n{System.Environment.StackTrace}");
+                Log.Error($"OverloadForceReloadPost.OverloadForceReloadPost: {harmony_error}\n{harmony_error.StackTrace}\n{Environment.StackTrace}");
             }
 
 
