@@ -11,7 +11,7 @@ namespace KeyCardPermissions.Patches
 
     [HarmonyPatch(typeof(InventoryItemLoader))]
     [HarmonyPatch("ForceReload", MethodType.Normal)]
-    class OverrideDefaultItems : Plugin<Config>
+    class OverrideDefaultItems
     {
 
         [HarmonyPrefix]
