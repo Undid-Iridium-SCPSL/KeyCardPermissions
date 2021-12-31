@@ -1,18 +1,13 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
-using System;
 
 namespace KeyCardPermissions
 {
     public class KeyCardPermissions : Plugin<Config>
     {
-        //private static readonly Lazy<KeyCardPermissions> LazyInstance = new Lazy<KeyCardPermissions>(() => new KeyCardPermissions());
-        private static readonly Lazy<KeyCardPermissions> LazyInstance = new Lazy<KeyCardPermissions>(() => new KeyCardPermissions());
-        /// <summary>
-        /// Quiet add KeyCardPermissions to reduce performance hit
-        /// </summary>
-        public static KeyCardPermissions Instance => LazyInstance.Value;
+
+        public KeyCardPermissions Instance;
 
         public static Config early_config;
 
@@ -33,6 +28,7 @@ namespace KeyCardPermissions
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.PatchAll();
+            Instance = new KeyCardPermissions();
         }
         /// <summary>
         /// Destruction function called through Exile
