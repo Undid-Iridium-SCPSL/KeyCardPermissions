@@ -79,7 +79,7 @@ Spawn_Config : false <=== What is default, and what you need to set
 
 
 IF; however, you have a plugin that adds new cards, I will attempt to apply the change per the card name, so it MUST match. 
-This also assume they did the correct way of adding new objects instead of doing it post setup. 
+This also assumes they did the correct way of adding new objects instead of doing it post setup. 
 AKA, I do a harmony patch at the very start of loading, if there is a need for post-support that's fine and I can add a feature flag for that if requested. 
 All that would need to be done is code call to forceReload that'll cause all items to reload with my patch. 
 
