@@ -47,24 +47,28 @@ namespace KeyCardPermissions.Patches
                     {
                         List<int> permissions_to_add = new List<int>();
 
-                        string all_permissions;
-                        config_keys.TryGetValue(card_name, out all_permissions);
+
+                        config_keys.TryGetValue(card_name, out string all_permissions);
                         string[] config_perm_arr = all_permissions.Split(',');
-                        int[] ints = Array.ConvertAll(config_perm_arr, int.Parse);
+                        int[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, int.Parse);
                         Interactables.Interobjects.DoorUtils.KeycardPermissions item = ((KeycardItem)entry.Value).Permissions;
 
                         int new_permission = 0;
 
-                        for (int i = 0; i < ints.Length; i++)
+                        for (int pos = 0; pos < parsed_int_permissions.Length; pos++)
                         {
-                            new_permission |= ints[i];
+                            new_permission |= parsed_int_permissions[pos];
                         }
+                        //https://stackoverflow.com/questions/7334832/are-addition-and-bitwise-or-the-same-in-this-case 
+                        //This is, as the stack post shows, a risky and stupid thing to do but that's how northwood did it 
+                        //and I don't intend to break things. 
                         //item = (Interactables.Interobjects.DoorUtils.KeycardPermissions)(16 | 32 | 64 | 128 | 256);
                         item = (Interactables.Interobjects.DoorUtils.KeycardPermissions)(new_permission);
                         ((KeycardItem)entry.Value).Permissions = item;
                         items_to_replace.Add(new KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>(entry.Key, entry.Value));
 
                     }
+
                 }
 
                 foreach (KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase> paired_data in items_to_replace)
