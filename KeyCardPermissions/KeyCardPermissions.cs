@@ -28,7 +28,7 @@ namespace KeyCardPermissions
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.PatchAll();
-            Instance = new KeyCardPermissions();
+            Instance = this;
         }
         /// <summary>
         /// Destruction function called through Exile
