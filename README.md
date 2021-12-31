@@ -86,5 +86,7 @@ All that would need to be done is code call to forceReload that'll cause all ite
 For now, Only option 1 is coded. I did this in the last 5 hours so I am tired, options 2 and 3 will be added eventually by the end of this week most likely. 
 
 
+![image](https://user-images.githubusercontent.com/24619207/147803086-ad12faa4-fb1c-462f-841d-ae5899240009.png)
 
+![image](https://user-images.githubusercontent.com/24619207/147803089-7e585c19-65e8-4c2d-a3c0-b7eb3c07d2c3.png)
 
