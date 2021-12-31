@@ -19,10 +19,9 @@ namespace KeyCardPermissions
         /// <summary>
         /// Medium priority, lower prioritys mean faster loadin
         /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Highest;
+        public override PluginPriority Priority { get; } = PluginPriority.Medium;
 
 
-        private Handlers.SpectatorMonitor currentSpectator;
 
 
 
@@ -42,7 +41,7 @@ namespace KeyCardPermissions
         {
             UnRegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
-            harmony.UnpatchAll();
+            harmony.UnpatchAll("com.Undid-Iridium.KeyCardPermissions");
         }
 
 
