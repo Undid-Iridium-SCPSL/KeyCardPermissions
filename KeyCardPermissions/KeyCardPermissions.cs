@@ -58,7 +58,6 @@ namespace KeyCardPermissions
             // to the EXILED_Events event listener so we get the event.
             if (!Config.IsEnabled)
             {
-                Log.Info("\n\nWas not enabled");
                 return;
             }
             early_config = Config;
