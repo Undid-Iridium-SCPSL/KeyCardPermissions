@@ -71,11 +71,11 @@ Keycard_Config : true <=== What is default, and what you need to set
 
 
 Option 2 is if you use Exiled KeyCardItem (Or Keycard class under features.items) then you just need to set the option 2 and it'll hijack your player spawn, access the inventory, remove the current card, replace card with new keycard with new permissions. Not cheap but possible, seems expensive for 32+ players.
-Door_Config : true <=== What is default, and what you need to set
+Door_Config : false <=== What is default, and what you need to set
 
 
 Option 3 is if you want a simplistic solution, I will provide logic so that doors just accept certain cards. Cheaper than option 2 but more prone to breaking with newer changes, door changes, etc. I would say this is middle ground option
-Spawn_Config : true <=== What is default, and what you need to set
+Spawn_Config : false <=== What is default, and what you need to set
 
 
 IF; however, you have a plugin that adds new cards, I will attempt to apply the change per the card name, so it MUST match. 

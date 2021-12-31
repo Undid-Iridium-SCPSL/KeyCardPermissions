@@ -9,10 +9,6 @@ namespace BroadcastForScps.Utilities
 {
     class LoggerTool
     {
-
-
-
-        //Logger log_file;
         FileStream file_stream;
         static string static_default_path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\KeyCardPermissions.log";
         string default_path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\KeyCardPermissions.log";
@@ -20,28 +16,11 @@ namespace BroadcastForScps.Utilities
         private const FileOptions DefaultOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
         public LoggerTool()
         {
-            //Log.Logger = new LoggerConfiguration()
-            //    .MinimumLevel.Debug()
-            //    .WriteTo.Console()
-            //    .WriteTo.File("logs\\KeyCardPermissions.log", rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
-
-            //Console.WriteLine("Hello?");
-            //log_file = new LoggerConfiguration()
-            //            .MinimumLevel.Debug()
-            //    //.WriteTo.Console()
-            //    .WriteTo.File("C:\\Users\\tuxwo\\Desktop\\KeyCardPermissions.log", rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
-
-            //Console.WriteLine("Hello again?");
             if (File.Exists(default_path))
             {
                 File.Delete(default_path);
 
             }
-
-
-
         }
 
         ~LoggerTool()

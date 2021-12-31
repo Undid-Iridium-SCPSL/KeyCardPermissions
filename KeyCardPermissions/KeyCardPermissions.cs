@@ -1,28 +1,21 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
-using System;
 
 namespace KeyCardPermissions
 {
     public class KeyCardPermissions : Plugin<Config>
     {
-        //private static readonly Lazy<KeyCardPermissions> LazyInstance = new Lazy<KeyCardPermissions>(() => new KeyCardPermissions());
-        private static readonly Lazy<KeyCardPermissions> LazyInstance = new Lazy<KeyCardPermissions>(() => new KeyCardPermissions());
-        /// <summary>
-        /// Quiet add KeyCardPermissions to reduce performance hit
-        /// </summary>
-        public static KeyCardPermissions Instance => LazyInstance.Value;
+
 
         public static Config early_config;
 
         /// <summary>
         /// Medium priority, lower prioritys mean faster loadin
         /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Highest;
+        public override PluginPriority Priority { get; } = PluginPriority.Medium;
 
 
-        private Handlers.SpectatorMonitor currentSpectator;
 
 
 
@@ -34,6 +27,7 @@ namespace KeyCardPermissions
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.PatchAll();
+
         }
         /// <summary>
         /// Destruction function called through Exile
@@ -42,11 +36,8 @@ namespace KeyCardPermissions
         {
             UnRegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
-            harmony.UnpatchAll();
+            harmony.UnpatchAll("com.Undid-Iridium.KeyCardPermissions");
         }
-
-
-
 
 
         /// <summary>
@@ -58,7 +49,6 @@ namespace KeyCardPermissions
             // to the EXILED_Events event listener so we get the event.
             if (!Config.IsEnabled)
             {
-                Log.Info("\n\nWas not enabled");
                 return;
             }
             early_config = Config;
@@ -84,7 +74,7 @@ namespace KeyCardPermissions
             //}
 
 
-            Log.Info("KeyCardPermissions has been reloaded");
+            Log.Info("KeyCardPermissions has been loaded");
 
         }
         /// <summary>
@@ -112,6 +102,8 @@ namespace KeyCardPermissions
             //    ServerEvents.RespawningTeam -= currentSpectator.OnTeamSpawn;
             //}
             //currentSpectator = null;
+
+            Log.Info("KeyCardPermissions has been unloaded");
         }
     }
 }
