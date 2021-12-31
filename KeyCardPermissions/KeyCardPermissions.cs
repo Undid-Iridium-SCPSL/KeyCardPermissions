@@ -7,7 +7,6 @@ namespace KeyCardPermissions
     public class KeyCardPermissions : Plugin<Config>
     {
 
-        public KeyCardPermissions Instance;
 
         public static Config early_config;
 
@@ -28,7 +27,7 @@ namespace KeyCardPermissions
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.PatchAll();
-            Instance = this;
+
         }
         /// <summary>
         /// Destruction function called through Exile
