@@ -83,7 +83,7 @@ This also assumes they did the correct way of adding new objects instead of doin
 AKA, I do a harmony patch at the very start of loading, if there is a need for post-support that's fine and I can add a feature flag for that if requested. 
 All that would need to be done is code call to forceReload that'll cause all items to reload with my patch. 
 
-For now, Only option 1 is coded. I did this in the last 5 hours so I am tired, options 2 and 3 will be added eventually by the end of this week most likely. 
+For now, Only option 1 is coded. I did this in the last 5 hours so I am tired, options 2 and 3 will not be added. Upon doing the research for them, it seems counter-intuitive to use anything OTHER than a harmony patch. Option 2 would be as easy as the patch but would potentially need to occur as often (Since the object is public, update the instance in the same manner as I did with the harmony patch; however, why do that if the harmony patch works). I did have this working; however, why have this when you can have the harmony patch once. Option 3 doesn't have the same problem as 2 in term of repeatability but why make the server work harder to figure out what card refers to what item, etc. If 2 or 3 is ever desired, make an issue; otherwise, I consider the harmony patch the best approach. Thanks!
 
 
 ![image](https://user-images.githubusercontent.com/24619207/147803086-ad12faa4-fb1c-462f-841d-ae5899240009.png)
