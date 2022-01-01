@@ -1,6 +1,12 @@
 # KeyCardPermissions
 Modify KeyCard Permissions Exiled4+
 
+# Installation
+
+**[EXILED](https://github.com/galaxy119/EXILED) must be installed for this to work.**
+
+Place the "KeyCardPermissions.dll" file in your Plugins folder.
+
 Solution 1:
 
 Hijack with Harmony to modify the default item list permissions. Expenisve once, and only once, very small <50ms 
