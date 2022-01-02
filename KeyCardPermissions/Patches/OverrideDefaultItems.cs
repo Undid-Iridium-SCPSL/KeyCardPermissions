@@ -45,22 +45,19 @@ namespace KeyCardPermissions.Patches
                     return;
                 }
 
-                List<string> keyList = new List<string>(config_keys.Keys);
+
                 List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>> items_to_replace = new List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>>();
                 foreach (KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase> entry in curr_loaded_items)
                 {
                     string card_name = entry.Key.ToString();
                     if (config_keys.ContainsKey(card_name))
                     {
-                        List<int> permissions_to_add = new List<int>();
-
-
                         config_keys.TryGetValue(card_name, out string all_permissions);
                         string[] config_perm_arr = all_permissions.Split(',');
-                        int[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, int.Parse);
+                        ushort[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, ushort.Parse);
                         Interactables.Interobjects.DoorUtils.KeycardPermissions item = ((KeycardItem)entry.Value).Permissions;
 
-                        int new_permission = 0;
+                        ushort new_permission = 0;
 
                         for (int pos = 0; pos < parsed_int_permissions.Length; pos++)
                         {
