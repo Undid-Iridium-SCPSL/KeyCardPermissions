@@ -126,6 +126,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Extensions\PlayerExtensions.cs" />
+    <Compile Include="Handlers\EventsHandler.cs" />
     <Compile Include="Patches\OverrideDefaultItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KeyCardPermissions.cs" />

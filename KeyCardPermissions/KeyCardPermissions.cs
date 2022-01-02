@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
+using KeyCardPermissions.Handlers;
 
 namespace KeyCardPermissions
 {
@@ -40,6 +41,9 @@ namespace KeyCardPermissions
         }
 
 
+        /// <inheritdoc cref="EventsHandler"/>
+        public EventsHandler Handler { get; private set; }
+
         /// <summary>
         /// Registers events for EXILE to hook unto with cororotines (I think?)
         /// </summary>
@@ -52,6 +56,9 @@ namespace KeyCardPermissions
                 return;
             }
             early_config = Config;
+
+            Handler = new EventsHandler(Config);
+            Handler.Start();
 
             //currentSpectator = new Handlers.SpectatorMonitor();
 
