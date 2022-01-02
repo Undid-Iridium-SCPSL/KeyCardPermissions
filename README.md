@@ -1,6 +1,11 @@
 # KeyCardPermissions
 Modify KeyCard Permissions Exiled4+
 
+![KEYCARDPERMISSIONS LATEST](https://img.shields.io/github/v/release/Undid-Iridium/KeyCardPermissions?include_prereleases&style=flat-square)
+![KEYCARDPERMISSIONS LINES](https://img.shields.io/tokei/lines/github/Undid-Iridium/KeyCardPermissions)
+![KEYCARDPERMISSIONS DOWNLOADS](https://img.shields.io/github/downloads/Undid-Iridium/KeyCardPermissions/total?style=flat-square)
+
+
 # Installation
 
 **[EXILED](https://github.com/galaxy119/EXILED) must be installed for this to work.**
