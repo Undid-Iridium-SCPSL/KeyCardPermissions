@@ -18,6 +18,10 @@ namespace KeyCardPermissions
 
 
 
+        private Harmony harmony;
+        private string harmony_id = "com.Undid-Iridium.KeyCardPermissions";
+
+
 
 
         /// <summary>
@@ -26,7 +30,7 @@ namespace KeyCardPermissions
         public override void OnEnabled()
         {
             RegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
+            harmony = new Harmony(harmony_id);
             harmony.PatchAll();
             base.OnEnabled();
 
@@ -37,8 +41,8 @@ namespace KeyCardPermissions
         public override void OnDisabled()
         {
             UnRegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
-            harmony.UnpatchAll("com.Undid-Iridium.KeyCardPermissions");
+            harmony.UnpatchAll(harmony.Id);
+            harmony = null;
             base.OnDisabled();
         }
 
