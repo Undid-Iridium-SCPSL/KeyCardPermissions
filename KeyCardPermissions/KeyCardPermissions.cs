@@ -28,6 +28,7 @@ namespace KeyCardPermissions
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.PatchAll();
+            base.OnEnabled();
 
         }
         /// <summary>
@@ -38,6 +39,7 @@ namespace KeyCardPermissions
             UnRegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
             harmony.UnpatchAll("com.Undid-Iridium.KeyCardPermissions");
+            base.OnDisabled();
         }
 
 
