@@ -16,25 +16,29 @@ namespace KeyCardPermissions.Extensions
         /// <param name="permissions">The permission that's gonna be searched for.</param>
         /// <param name="requiresAllPermissions">Whether all permissions are required.</param>
         /// <returns>Whether the player has the required keycard.</returns>
-        public static bool ModifyKeycardPermissions(this Player player, Config curr_config, bool requiresAllPermissions = false)
+        public static bool ModifyInventoryKeycardPermissions(this Player player, Config curr_config)
         {
-            Dictionary<string, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
+            Dictionary<ItemType, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
             if (config_keys == null || config_keys.Count == 0)
             {
                 return false;
             }
 
 
-            Log.Info($"We are definitely modifying the card right..");
+
+            if (curr_config.debug_enabled)
+            {
+                Log.Info($"We are definitely modifying the player inventory card right..");
+            }
+
             foreach (Item player_item in player.Items)
             {
                 if (player_item is Keycard keycard)
                 {
-                    string card_name = ((Keycard)player_item).Type.ToString();
-                    Log.Info($"What is the card name {card_name}");
-                    if (config_keys.ContainsKey(card_name))
+
+                    if (config_keys.TryGetValue(player_item.Type, out string all_permissions))
                     {
-                        config_keys.TryGetValue(card_name, out string all_permissions);
+
                         string[] config_perm_arr = all_permissions.Split(',');
                         ushort[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, ushort.Parse);
                         ushort new_permission = 0;
@@ -45,7 +49,12 @@ namespace KeyCardPermissions.Extensions
                         }
 
                         ((Keycard)player_item).Base.Permissions = ((Interactables.Interobjects.DoorUtils.KeycardPermissions)(new_permission));
-                        Log.Info($"Current keycard permissions { ((Keycard)player_item).Base.Permissions}");
+
+                        if (curr_config.debug_enabled)
+                        {
+                            Log.Info($"Current keycard permissions { ((Keycard)player_item).Base.Permissions}");
+                        }
+
                     }
 
                 }

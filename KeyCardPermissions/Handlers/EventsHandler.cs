@@ -24,7 +24,7 @@ namespace KeyCardPermissions.Handlers
                 return;
             }
             Players.Spawning += OnRespawn;
-            Players.PickingUpItem += OnPickup;
+
         }
 
         /// <summary>
@@ -38,17 +38,14 @@ namespace KeyCardPermissions.Handlers
                 return;
             }
             Players.Spawning -= OnRespawn;
-            Players.PickingUpItem -= OnPickup;
+
         }
 
-        private void OnPickup(PickingUpItemEventArgs ev)
-        {
-            ev.Player.ModifyKeycardPermissions(this.config);
-        }
+
 
         private void OnRespawn(SpawningEventArgs ev)
         {
-            ev.Player.ModifyKeycardPermissions(this.config);
+            ev.Player.ModifyInventoryKeycardPermissions(this.config);
         }
 
 
