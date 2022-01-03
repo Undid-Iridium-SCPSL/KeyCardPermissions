@@ -36,7 +36,6 @@ namespace KeyCardPermissions
             new Dictionary<string, bool>
             {
                 { "Keycard_Config", true },
-                { "Door_Config", false },
                 { "Spawn_Config", false }
             };
 
