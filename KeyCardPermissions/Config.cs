@@ -10,21 +10,21 @@ namespace KeyCardPermissions
         public bool IsEnabled { get; set; } = true;
 
         [Description("Gives access to the keycards you set per class.")]
-        public Dictionary<ItemType, string> CardPermissions { get; set; } =
-            new Dictionary<ItemType, string>
+        public Dictionary<ItemType, ushort[]> CardPermissions { get; set; } =
+            new Dictionary<ItemType, ushort[]>
             {
-                 { ItemType.KeycardJanitor,  "16" },
-                { ItemType.KeycardScientist ,  "16,32" },
-                { ItemType.KeycardResearchCoordinator ,  "1,16,32" },
-                { ItemType.KeycardZoneManager ,  "1,16" },
-                { ItemType.KeycardGuard ,  "1,16,128" },
-                { ItemType.KeycardNTFOfficer ,  "1,16,32,128,256" },
-                { ItemType.KeycardContainmentEngineer ,  "1,16,32,64" },
-                { ItemType.KeycardNTFLieutenant ,  "1,2,16,32,128,256" },
-                { ItemType.KeycardNTFCommander ,  "1,2,4,16,32,128,256,512" },
-                { ItemType.KeycardFacilityManager ,  "1,2,4,8,16,32,64" },
-                { ItemType.KeycardChaosInsurgency ,  "1,2,4,16,32,128,256,512" },
-                { ItemType.KeycardO5 ,  "1,2,4,8,16,32,64,128,256,512" }
+                 { ItemType.KeycardJanitor,  new ushort[] {16} },
+                { ItemType.KeycardScientist ,  new ushort[] {16, 32} },
+                { ItemType.KeycardResearchCoordinator ,  new ushort[] {1,16,32}},
+                { ItemType.KeycardZoneManager , new ushort[] {1,16 } },
+                { ItemType.KeycardGuard ,  new ushort[] { 1, 16, 128 } },
+                { ItemType.KeycardNTFOfficer ,  new ushort[] { 1, 16, 32, 128, 256 } },
+                { ItemType.KeycardContainmentEngineer ,  new ushort[] { 1, 16, 32, 64 } },
+                { ItemType.KeycardNTFLieutenant ,  new ushort[] { 1, 2, 16, 32, 128, 256 } },
+                { ItemType.KeycardNTFCommander ,  new ushort[] { 1, 2, 4, 16, 32, 128, 256, 512 } },
+                { ItemType.KeycardFacilityManager ,  new ushort[] { 1, 2, 4, 8, 16, 32, 64 } },
+                { ItemType.KeycardChaosInsurgency ,  new ushort[] { 1, 2, 4, 16, 32, 128, 256, 512 } },
+                { ItemType.KeycardO5 ,  new ushort[] { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 } }
             };
 
 
