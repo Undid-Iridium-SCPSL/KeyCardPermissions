@@ -12,6 +12,25 @@ Modify KeyCard Permissions Exiled4+
 
 Place the "KeyCardPermissions.dll" file in your Plugins folder.
 
+
+
+## Config
+What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
+| Keycard Configuration      | Value Type | Keycard_Perms | Value Type | Description                                            |
+|----------------------------|------------|-------------------------------------------------------------------------------------|
+| KeycardJanitor             | RoleType   | [- 16]        | ushort arr | Determines the permissions on the card                 |
+| KeycardScientist           | RoleType   | [- 16, - 32]  | ushort arr | Determines the permissions on the card                 |
+| KeycardResearchCoordinator | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardZoneManager         | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardGuard               | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardNTFOfficer          | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardContainmentEngineer | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardNTFLieutenant       | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardNTFCommander        | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardFacilityManager     | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardChaosInsurgency     | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardO5                  | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+
 Solution 1:
 
 Hijack with Harmony to modify the default item list permissions. Expenisve once, and only once, very small <50ms 
@@ -62,8 +81,94 @@ Keycard_Config : true <=== What is default, and what you need to set
 	KeycardChaosInsurgency
 	KeycardO5
 ```
+``` 
+	current version
+
+  card_permissions:
+    KeycardJanitor:
+    - 16
+    KeycardScientist:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
+    KeycardResearchCoordinator:
+    - 1
+    - 16
+    - 32
+    KeycardZoneManager:
+    - 1
+    - 16
+    KeycardGuard:
+    - 1
+    - 16
+    - 128
+    KeycardNTFOfficer:
+    - 1
+    - 16
+    - 32
+    - 128
+    - 256
+    KeycardContainmentEngineer:
+    - 1
+    - 16
+    - 32
+    - 64
+    KeycardNTFLieutenant:
+    - 1
+    - 2
+    - 16
+    - 32
+    - 128
+    - 256
+    KeycardNTFCommander:
+    - 1
+    - 2
+    - 4
+    - 16
+    - 32
+    - 128
+    - 256
+    - 512
+    KeycardFacilityManager:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 64
+    KeycardChaosInsurgency:
+    - 1
+    - 2
+    - 4
+    - 16
+    - 32
+    - 128
+    - 256
+    - 512
+    KeycardO5:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
+    - 256
+    - 512
+    
+    ```
+
+
 
 ```
+	Previous version
 	Default permissions
 	{ "KeycardJanitor" ,  "16" },
 	{ "KeycardScientist" ,  "16,32" },
@@ -77,6 +182,8 @@ Keycard_Config : true <=== What is default, and what you need to set
 	{ "KeycardFacilityManager" ,  "1,2,4,8,16,32,64" },
 	{ "KeycardChaosInsurgency" ,  "1,2,4,16,32,128,256,512" },
 	{ "KeycardO5" ,  "1,2,4,8,16,32,64,128,256,512" }
+
+	
 ```
 
 
