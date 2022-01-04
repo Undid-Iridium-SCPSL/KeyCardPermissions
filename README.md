@@ -81,8 +81,9 @@ Keycard_Config : true <=== What is default, and what you need to set
 	KeycardChaosInsurgency
 	KeycardO5
 ```
+Current version
 ``` 
-	current version
+
 
   card_permissions:
     KeycardJanitor:
@@ -163,12 +164,12 @@ Keycard_Config : true <=== What is default, and what you need to set
     - 256
     - 512
     
-    ```
+```
 
-
+Previous version: 
 
 ```
-	Previous version
+	
 	Default permissions
 	{ "KeycardJanitor" ,  "16" },
 	{ "KeycardScientist" ,  "16,32" },
