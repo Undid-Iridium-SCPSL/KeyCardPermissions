@@ -1,11 +1,11 @@
-﻿using Exiled.API.Features;
+﻿using BroadcastForScps.Utilities;
+using Exiled.API.Features;
 using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace BroadcastForScps.Utilities
+namespace KeyCardPermissions.Utilities
 {
-
     public static class ReflectionHelpers
     {
         private const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
@@ -111,5 +111,5 @@ namespace BroadcastForScps.Utilities
             }
         }
     }
-}
 
+}

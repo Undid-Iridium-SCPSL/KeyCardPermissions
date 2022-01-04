@@ -1,8 +1,8 @@
-﻿using BroadcastForScps.Utilities;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 using HarmonyLib;
 using InventorySystem;
 using InventorySystem.Items.Keycards;
+using KeyCardPermissions.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -14,13 +14,11 @@ namespace KeyCardPermissions.Patches
     class OverrideDefaultItems
     {
 
-        [HarmonyPrefix]
-        public static bool OverloadForceReloadPre()
-        {
-            return true;
 
-        }
-
+        /// <summary>
+        /// Patches the keycard object _loadedItems such that after it is loaded, or when forcedReload is called
+        /// the object is thereafter changes where all cards are now updated with the permissions listed in the config file
+        /// </summary>
         [HarmonyPostfix]
         public static void OverloadForceReloadPost()
         {

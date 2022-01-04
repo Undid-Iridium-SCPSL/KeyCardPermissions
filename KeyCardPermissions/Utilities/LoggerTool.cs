@@ -9,27 +9,13 @@ namespace BroadcastForScps.Utilities
 {
     class LoggerTool
     {
-        FileStream file_stream;
+
         static string static_default_path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\KeyCardPermissions.log";
         string default_path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\KeyCardPermissions.log";
         private const int DefaultBufferSize = 4096;
-        private const FileOptions DefaultOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
-        public LoggerTool()
-        {
-            if (File.Exists(default_path))
-            {
-                File.Delete(default_path);
 
-            }
-        }
 
-        ~LoggerTool()
-        {
-            if (file_stream != null)
-            {
-                file_stream.Close();
-            }
-        }
+
 
         private void AddText(string value)
         {
@@ -72,12 +58,6 @@ namespace BroadcastForScps.Utilities
             await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
             sourceStream.Close();
         }
-        internal void close_log()
-        {
-            if (file_stream != null)
-            {
-                file_stream.Close();
-            }
-        }
+
     }
 }

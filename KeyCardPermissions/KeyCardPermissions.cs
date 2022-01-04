@@ -2,6 +2,7 @@
 using Exiled.API.Features;
 using HarmonyLib;
 using KeyCardPermissions.Handlers;
+using System;
 
 namespace KeyCardPermissions
 {
@@ -21,7 +22,7 @@ namespace KeyCardPermissions
         private Harmony harmony;
         private string harmony_id = "com.Undid-Iridium.KeyCardPermissions";
 
-
+        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
 
 
         /// <summary>
@@ -66,27 +67,6 @@ namespace KeyCardPermissions
             Handler = new EventsHandler(Config);
             Handler.Start();
 
-            //currentSpectator = new Handlers.SpectatorMonitor();
-
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = new Handlers.ForcedEventHandlers();
-            //    PlayerEvents.ChangingRole += eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-
-            //    PlayerEvents.Died += currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning += currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole += currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound += currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound += currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers += currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam += currentSpectator.OnTeamSpawn;
-            //}
-
-
             Log.Info("KeyCardPermissions has been loaded");
 
         }
@@ -95,27 +75,6 @@ namespace KeyCardPermissions
         /// </summary>
         public void UnRegisterEvents()
         {
-            // Make it dynamically updatable.
-            // We do this by removing the listener for the event and then nulling the event handler.
-            // This process must be repeated for each event.
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = null;
-            //    PlayerEvents.ChangingRole -= eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-            //    PlayerEvents.Died -= currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning -= currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole -= currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound -= currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam -= currentSpectator.OnTeamSpawn;
-            //}
-            //currentSpectator = null;
-
             Log.Info("KeyCardPermissions has been unloaded");
         }
     }

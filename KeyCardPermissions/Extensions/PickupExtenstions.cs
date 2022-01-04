@@ -8,12 +8,11 @@ namespace KeyCardPermissions.Extensions
     public static class PickupExtenstions
     {
         /// <summary>
-        /// Modifys keycard permission upon pickup
+        /// Modifys an individual card's permission. Is not truly used currently. 
         /// </summary>
-        /// <param name="player"><see cref="Player"/> trying to interact.</param>
-        /// <param name="permissions">The permission that's gonna be searched for.</param>
-        /// <param name="requiresAllPermissions">Whether all permissions are required.</param>
-        /// <returns>Whether the player has the required keycard.</returns>
+        /// <param name="keycard"> <see cref="Item"></see></param>
+        /// <param name="curr_config"> <see cref="Config"></see></param>
+        /// <returns></returns>
         public static bool ModifyKeycardPermissions(this Item keycard, Config curr_config)
         {
 

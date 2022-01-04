@@ -3,6 +3,9 @@ using KeyCardPermissions.Extensions;
 using Players = Exiled.Events.Handlers.Player;
 namespace KeyCardPermissions.Handlers
 {
+    /// <summary>
+    /// This is supposed to handle spawn events but I do not believe it is worth the complete writeout unless someone requests it. 
+    /// </summary>
     public class EventsHandler
     {
         private readonly Config config;

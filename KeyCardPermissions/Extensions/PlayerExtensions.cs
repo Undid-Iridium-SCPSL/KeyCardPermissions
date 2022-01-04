@@ -10,12 +10,11 @@ namespace KeyCardPermissions.Extensions
     public static class PlayerExtensions
     {
         /// <summary>
-        /// Checks whether the player has a keycard of a specific permission.
+        /// Checks whether the player has a keycard and updates the permissions
         /// </summary>
-        /// <param name="player"><see cref="Player"/> trying to interact.</param>
-        /// <param name="permissions">The permission that's gonna be searched for.</param>
-        /// <param name="requiresAllPermissions">Whether all permissions are required.</param>
-        /// <returns>Whether the player has the required keycard.</returns>
+        /// <param name="player"> Player object</param>
+        /// <param name="curr_config"> IConfig reference </param>
+        /// <returns></returns>
         public static bool ModifyInventoryKeycardPermissions(this Player player, Config curr_config)
         {
             Dictionary<ItemType, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
