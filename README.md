@@ -13,6 +13,10 @@ Modify KeyCard Permissions Exiled4+
 Place the "KeyCardPermissions.dll" file in your Plugins folder.
 
 
+## REQUIREMENTS
+* Exiled: V4.21.0
+* SCP:SL Server: V11.0
+
 
 ## Config
 What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
@@ -193,7 +197,7 @@ Option 2 is if you use Exiled KeyCardItem (Or Keycard class under features.items
 Door_Config : false <=== What is default, and what you need to set
 
 
-Option 3 is if you want a simplistic solution, I will provide logic so that doors just accept certain cards. Cheaper than option 2 but more prone to breaking with newer changes, door changes, etc. I would say this is middle ground option
+Option 3 is if you want a simplistic solution, I considerd providing logic so that doors just accept certain cards. Cheaper than option 2 but more prone to breaking with newer changes, door changes, etc. I would say this is middle ground option
 Spawn_Config : false <=== What is default, and what you need to set
 
 
