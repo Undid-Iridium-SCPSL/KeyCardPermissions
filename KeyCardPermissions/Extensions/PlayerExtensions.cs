@@ -1,6 +1,5 @@
 ﻿using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using System;
 using System.Collections.Generic;
 namespace KeyCardPermissions.Extensions
 {
@@ -17,7 +16,7 @@ namespace KeyCardPermissions.Extensions
         /// <returns></returns>
         public static bool ModifyInventoryKeycardPermissions(this Player player, Config curr_config)
         {
-            Dictionary<ItemType, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
+            Dictionary<ItemType, ushort[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
             if (config_keys == null || config_keys.Count == 0)
             {
                 return false;
@@ -35,16 +34,13 @@ namespace KeyCardPermissions.Extensions
                 if (player_item is Keycard keycard)
                 {
 
-                    if (config_keys.TryGetValue(player_item.Type, out string all_permissions))
+                    if (config_keys.TryGetValue(player_item.Type, out ushort[] all_permissions))
                     {
-
-                        string[] config_perm_arr = all_permissions.Split(',');
-                        ushort[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, ushort.Parse);
                         ushort new_permission = 0;
 
-                        for (int pos = 0; pos < parsed_int_permissions.Length; pos++)
+                        for (int pos = 0; pos < all_permissions.Length; pos++)
                         {
-                            new_permission |= parsed_int_permissions[pos];
+                            new_permission |= all_permissions[pos];
                         }
 
                         ((Keycard)player_item).Base.Permissions = ((Interactables.Interobjects.DoorUtils.KeycardPermissions)(new_permission));
