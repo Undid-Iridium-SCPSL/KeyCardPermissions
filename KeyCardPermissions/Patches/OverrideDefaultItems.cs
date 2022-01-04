@@ -1,8 +1,8 @@
-﻿using BroadcastForScps.Utilities;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 using HarmonyLib;
 using InventorySystem;
 using InventorySystem.Items.Keycards;
+using KeyCardPermissions.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -14,13 +14,11 @@ namespace KeyCardPermissions.Patches
     class OverrideDefaultItems
     {
 
-        [HarmonyPrefix]
-        public static bool OverloadForceReloadPre()
-        {
-            return true;
 
-        }
-
+        /// <summary>
+        /// Patches the keycard object _loadedItems such that after it is loaded, or when forcedReload is called
+        /// the object is thereafter changes where all cards are now updated with the permissions listed in the config file
+        /// </summary>
         [HarmonyPostfix]
         public static void OverloadForceReloadPost()
         {
@@ -34,53 +32,38 @@ namespace KeyCardPermissions.Patches
                     return;
                 }
 
-
-                bool myvalue = (bool)Traverse.Create(typeof(InventoryItemLoader)).Field("_loaded").GetValue();
                 Dictionary<global::ItemType, InventorySystem.Items.ItemBase> curr_loaded_items =
                     (Dictionary<ItemType, InventorySystem.Items.ItemBase>)Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").GetValue();
 
-                Dictionary<string, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
+                Dictionary<ItemType, string> config_keys = KeyCardPermissions.early_config.CardPermissions;
                 if (config_keys == null || config_keys.Count == 0)
                 {
                     return;
                 }
 
-                List<string> keyList = new List<string>(config_keys.Keys);
-                List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>> items_to_replace = new List<KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>>();
-                foreach (KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase> entry in curr_loaded_items)
+                foreach (KeyValuePair<ItemType, string> paired_entry in config_keys)
                 {
-                    string card_name = entry.Key.ToString();
-                    if (config_keys.ContainsKey(card_name))
+                    ItemType associated_role = paired_entry.Key;
+                    if (curr_loaded_items.ContainsKey(associated_role))
                     {
-                        List<int> permissions_to_add = new List<int>();
+                        KeycardItem current_keycard = (KeycardItem)curr_loaded_items[associated_role];
 
+                        if (!config_keys.TryGetValue(associated_role, out string all_permissions))
+                        {
+                            continue;
+                        }
 
-                        config_keys.TryGetValue(card_name, out string all_permissions);
                         string[] config_perm_arr = all_permissions.Split(',');
-                        int[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, int.Parse);
-                        Interactables.Interobjects.DoorUtils.KeycardPermissions item = ((KeycardItem)entry.Value).Permissions;
-
-                        int new_permission = 0;
-
+                        ushort[] parsed_int_permissions = Array.ConvertAll(config_perm_arr, ushort.Parse);
+                        ushort new_permission = 0;
                         for (int pos = 0; pos < parsed_int_permissions.Length; pos++)
                         {
                             new_permission |= parsed_int_permissions[pos];
                         }
-                        //https://stackoverflow.com/questions/7334832/are-addition-and-bitwise-or-the-same-in-this-case 
-                        //This is, as the stack post shows, a risky and stupid thing to do but that's how northwood did it 
-                        //and I don't intend to break things. 
-                        //item = (Interactables.Interobjects.DoorUtils.KeycardPermissions)(16 | 32 | 64 | 128 | 256);
-                        item = (Interactables.Interobjects.DoorUtils.KeycardPermissions)(new_permission);
-                        ((KeycardItem)entry.Value).Permissions = item;
-                        items_to_replace.Add(new KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase>(entry.Key, entry.Value));
 
+                        current_keycard.Permissions = (Interactables.Interobjects.DoorUtils.KeycardPermissions)new_permission;
+                        curr_loaded_items[associated_role] = current_keycard;
                     }
-
-                }
-
-                foreach (KeyValuePair<global::ItemType, InventorySystem.Items.ItemBase> paired_data in items_to_replace)
-                {
-                    curr_loaded_items[paired_data.Key] = paired_data.Value;
                 }
 
                 Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").SetInstanceField("_loadedItems", curr_loaded_items);

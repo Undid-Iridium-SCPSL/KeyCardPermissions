@@ -1,6 +1,8 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
+using KeyCardPermissions.Handlers;
+using System;
 
 namespace KeyCardPermissions
 {
@@ -17,6 +19,10 @@ namespace KeyCardPermissions
 
 
 
+        private Harmony harmony;
+        private string harmony_id = "com.Undid-Iridium.KeyCardPermissions";
+
+        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
 
 
         /// <summary>
@@ -25,8 +31,9 @@ namespace KeyCardPermissions
         public override void OnEnabled()
         {
             RegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
+            harmony = new Harmony(harmony_id);
             harmony.PatchAll();
+            base.OnEnabled();
 
         }
         /// <summary>
@@ -35,10 +42,14 @@ namespace KeyCardPermissions
         public override void OnDisabled()
         {
             UnRegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.KeyCardPermissions");
-            harmony.UnpatchAll("com.Undid-Iridium.KeyCardPermissions");
+            harmony.UnpatchAll(harmony.Id);
+            harmony = null;
+            base.OnDisabled();
         }
 
+
+        /// <inheritdoc cref="EventsHandler"/>
+        public EventsHandler Handler { get; private set; }
 
         /// <summary>
         /// Registers events for EXILE to hook unto with cororotines (I think?)
@@ -53,26 +64,8 @@ namespace KeyCardPermissions
             }
             early_config = Config;
 
-            //currentSpectator = new Handlers.SpectatorMonitor();
-
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = new Handlers.ForcedEventHandlers();
-            //    PlayerEvents.ChangingRole += eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-
-            //    PlayerEvents.Died += currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning += currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole += currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound += currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound += currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers += currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam += currentSpectator.OnTeamSpawn;
-            //}
-
+            Handler = new EventsHandler(Config);
+            Handler.Start();
 
             Log.Info("KeyCardPermissions has been loaded");
 
@@ -82,27 +75,6 @@ namespace KeyCardPermissions
         /// </summary>
         public void UnRegisterEvents()
         {
-            // Make it dynamically updatable.
-            // We do this by removing the listener for the event and then nulling the event handler.
-            // This process must be repeated for each event.
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = null;
-            //    PlayerEvents.ChangingRole -= eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-            //    PlayerEvents.Died -= currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning -= currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole -= currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound -= currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam -= currentSpectator.OnTeamSpawn;
-            //}
-            //currentSpectator = null;
-
             Log.Info("KeyCardPermissions has been unloaded");
         }
     }
