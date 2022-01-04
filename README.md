@@ -17,9 +17,9 @@ Place the "KeyCardPermissions.dll" file in your Plugins folder.
 ## Config
 What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
 | Keycard Configuration      | Value Type | Keycard_Perms | Value Type | Description                                            |
-|----------------------------|------------|-------------------------------------------------------------------------------------|
-| KeycardJanitor             | RoleType   | [- 16]        | ushort arr | Determines the permissions on the card                 |
-| KeycardScientist           | RoleType   | [- 16, - 32]  | ushort arr | Determines the permissions on the card                 |
+|----------------------------|------------|---------------|------------|--------------------------------------------------------|
+| KeycardJanitor             | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
+| KeycardScientist           | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
 | KeycardResearchCoordinator | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
 | KeycardZoneManager         | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
 | KeycardGuard               | RoleType   | See below     | ushort arr | Determines the permissions on the card                 |
