@@ -14,8 +14,8 @@ Place the "KeyCardPermissions.dll" file in your Plugins folder.
 
 
 ## REQUIREMENTS
-* Exiled: V4.21.0
-* SCP:SL Server: V11.0
+* Exiled: V4.2.0
+* SCP:SL Server: V11.1.0
 
 
 ## Config
