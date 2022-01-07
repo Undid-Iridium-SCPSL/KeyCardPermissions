@@ -1,4 +1,5 @@
-﻿using Exiled.API.Features;
+﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace KeyCardPermissions.Extensions
 
 
 
-            Dictionary<ItemType, ushort[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
+            Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
             if (config_keys == null || config_keys.Count == 0)
             {
                 return false;
@@ -29,7 +30,7 @@ namespace KeyCardPermissions.Extensions
             }
 
 
-            if (config_keys.TryGetValue(keycard.Type, out ushort[] keycard_perms))
+            if (config_keys.TryGetValue(keycard.Type, out KeycardPermissions[] keycard_perms))
             {
 
 
@@ -37,7 +38,7 @@ namespace KeyCardPermissions.Extensions
 
                 for (int pos = 0; pos < keycard_perms.Length; pos++)
                 {
-                    new_permission |= keycard_perms[pos];
+                    new_permission |= (ushort)keycard_perms[pos];
                 }
 
                 ((Keycard)keycard).Base.Permissions = (Interactables.Interobjects.DoorUtils.KeycardPermissions)new_permission;

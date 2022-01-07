@@ -1,4 +1,5 @@
-﻿using Exiled.API.Features;
+﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using HarmonyLib;
 using InventorySystem;
 using InventorySystem.Items.Keycards;
@@ -35,20 +36,20 @@ namespace KeyCardPermissions.Patches
                 Dictionary<global::ItemType, InventorySystem.Items.ItemBase> curr_loaded_items =
                     (Dictionary<ItemType, InventorySystem.Items.ItemBase>)Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").GetValue();
 
-                Dictionary<ItemType, ushort[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
+                Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
                 if (config_keys == null || config_keys.Count == 0)
                 {
                     return;
                 }
 
-                foreach (KeyValuePair<ItemType, ushort[]> paired_entry in config_keys)
+                foreach (KeyValuePair<ItemType, KeycardPermissions[]> paired_entry in config_keys)
                 {
                     ItemType associated_role = paired_entry.Key;
                     if (curr_loaded_items.ContainsKey(associated_role))
                     {
                         KeycardItem current_keycard = (KeycardItem)curr_loaded_items[associated_role];
 
-                        if (!config_keys.TryGetValue(associated_role, out ushort[] all_permissions))
+                        if (!config_keys.TryGetValue(associated_role, out KeycardPermissions[] all_permissions))
                         {
                             continue;
                         }
@@ -57,7 +58,7 @@ namespace KeyCardPermissions.Patches
                         ushort new_permission = 0;
                         for (int pos = 0; pos < all_permissions.Length; pos++)
                         {
-                            new_permission |= all_permissions[pos];
+                            new_permission |= (ushort)all_permissions[pos];
                         }
 
                         current_keycard.Permissions = (Interactables.Interobjects.DoorUtils.KeycardPermissions)new_permission;
