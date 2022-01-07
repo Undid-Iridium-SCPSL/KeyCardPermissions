@@ -1,4 +1,5 @@
-﻿using Exiled.API.Interfaces;
+﻿using Exiled.API.Enums;
+using Exiled.API.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel;
 namespace KeyCardPermissions
@@ -10,21 +11,21 @@ namespace KeyCardPermissions
         public bool IsEnabled { get; set; } = true;
 
         [Description("Gives access to the keycards you set per class.")]
-        public Dictionary<ItemType, ushort[]> CardPermissions { get; set; } =
-            new Dictionary<ItemType, ushort[]>
+        public Dictionary<ItemType, KeycardPermissions[]> CardPermissions { get; set; } =
+            new Dictionary<ItemType, KeycardPermissions[]>
             {
-                 { ItemType.KeycardJanitor,  new ushort[] {16} },
-                { ItemType.KeycardScientist ,  new ushort[] {16, 32} },
-                { ItemType.KeycardResearchCoordinator ,  new ushort[] {1,16,32}},
-                { ItemType.KeycardZoneManager , new ushort[] {1,16 } },
-                { ItemType.KeycardGuard ,  new ushort[] { 1, 16, 128 } },
-                { ItemType.KeycardNTFOfficer ,  new ushort[] { 1, 16, 32, 128, 256 } },
-                { ItemType.KeycardContainmentEngineer ,  new ushort[] { 1, 16, 32, 64 } },
-                { ItemType.KeycardNTFLieutenant ,  new ushort[] { 1, 2, 16, 32, 128, 256 } },
-                { ItemType.KeycardNTFCommander ,  new ushort[] { 1, 2, 4, 16, 32, 128, 256, 512 } },
-                { ItemType.KeycardFacilityManager ,  new ushort[] { 1, 2, 4, 8, 16, 32, 64 } },
-                { ItemType.KeycardChaosInsurgency ,  new ushort[] { 1, 2, 4, 16, 32, 128, 256, 512 } },
-                { ItemType.KeycardO5 ,  new ushort[] { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 } }
+                 { ItemType.KeycardJanitor,  new KeycardPermissions[] {KeycardPermissions.ContainmentLevelOne } },
+                { ItemType.KeycardScientist ,  new KeycardPermissions[] { KeycardPermissions.ContainmentLevelOne, KeycardPermissions.ContainmentLevelTwo} },
+                { ItemType.KeycardResearchCoordinator ,  new KeycardPermissions[] {KeycardPermissions.Checkpoints, KeycardPermissions.ContainmentLevelOne, KeycardPermissions.ContainmentLevelTwo}},
+                { ItemType.KeycardZoneManager , new KeycardPermissions[] {KeycardPermissions.Checkpoints, KeycardPermissions.ContainmentLevelOne } },
+                { ItemType.KeycardGuard ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ArmoryLevelOne } },
+                { ItemType.KeycardNTFOfficer ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo,KeycardPermissions.ArmoryLevelOne, KeycardPermissions.ArmoryLevelTwo } },
+                { ItemType.KeycardContainmentEngineer ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo, KeycardPermissions.ContainmentLevelThree } },
+                { ItemType.KeycardNTFLieutenant ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ExitGates,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo,KeycardPermissions.ArmoryLevelOne, KeycardPermissions.ArmoryLevelTwo } },
+                { ItemType.KeycardNTFCommander ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ExitGates,KeycardPermissions.Intercom,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo,KeycardPermissions.ArmoryLevelOne, KeycardPermissions.ArmoryLevelTwo, KeycardPermissions.ArmoryLevelThree } },
+                { ItemType.KeycardFacilityManager ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ExitGates,KeycardPermissions.Intercom,KeycardPermissions.AlphaWarhead,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo, KeycardPermissions.ContainmentLevelThree } },
+                { ItemType.KeycardChaosInsurgency ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ExitGates,KeycardPermissions.Intercom,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo,KeycardPermissions.ArmoryLevelOne, KeycardPermissions.ArmoryLevelTwo, KeycardPermissions.ArmoryLevelThree } },
+                { ItemType.KeycardO5 ,  new KeycardPermissions[] { KeycardPermissions.Checkpoints,KeycardPermissions.ExitGates,KeycardPermissions.Intercom,KeycardPermissions.AlphaWarhead,KeycardPermissions.ContainmentLevelOne,KeycardPermissions.ContainmentLevelTwo, KeycardPermissions.ContainmentLevelThree,  KeycardPermissions.ArmoryLevelOne, KeycardPermissions.ArmoryLevelTwo, KeycardPermissions.ArmoryLevelThree } }
             };
 
 
