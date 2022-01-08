@@ -85,10 +85,95 @@ Keycard_Config : true <=== What is default, and what you need to set
 	KeycardChaosInsurgency
 	KeycardO5
 ```
-Current version
+
+```
+key_card_permissions:
+# Whether to enable or disable plugin
+  is_enabled: true
+  # Gives access to the keycards you set per class.
+  card_permissions:
+    KeycardJanitor:
+    - ContainmentLevelOne
+    KeycardScientist:
+    - Checkpoints
+    - ExitGates
+    - Intercom
+    - AlphaWarhead
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ContainmentLevelThree
+    - ArmoryLevelOne
+    KeycardResearchCoordinator:
+    - Checkpoints
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    KeycardZoneManager:
+    - Checkpoints
+    - ContainmentLevelOne
+    KeycardGuard:
+    - Checkpoints
+    - ContainmentLevelOne
+    - ArmoryLevelOne
+    KeycardNTFOfficer:
+    - Checkpoints
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ArmoryLevelOne
+    - ArmoryLevelTwo
+    KeycardContainmentEngineer:
+    - Checkpoints
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ContainmentLevelThree
+    KeycardNTFLieutenant:
+    - Checkpoints
+    - ExitGates
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ArmoryLevelOne
+    - ArmoryLevelTwo
+    KeycardNTFCommander:
+    - Checkpoints
+    - ExitGates
+    - Intercom
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ArmoryLevelOne
+    - ArmoryLevelTwo
+    - ArmoryLevelThree
+    KeycardFacilityManager:
+    - Checkpoints
+    - ExitGates
+    - Intercom
+    - AlphaWarhead
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ContainmentLevelThree
+    KeycardChaosInsurgency:
+    - Checkpoints
+    - ExitGates
+    - Intercom
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ArmoryLevelOne
+    - ArmoryLevelTwo
+    - ArmoryLevelThree
+    KeycardO5:
+    - Checkpoints
+    - ExitGates
+    - Intercom
+    - AlphaWarhead
+    - ContainmentLevelOne
+    - ContainmentLevelTwo
+    - ContainmentLevelThree
+    - ArmoryLevelOne
+    - ArmoryLevelTwo
+    - ArmoryLevelThree
+```
+
+
 ``` 
-
-
+  Last version
   card_permissions:
     KeycardJanitor:
     - 16
