@@ -85,7 +85,7 @@ Keycard_Config : true <=== What is default, and what you need to set
 	KeycardChaosInsurgency
 	KeycardO5
 ```
-
+Latest version
 ```
 key_card_permissions:
 # Whether to enable or disable plugin
@@ -171,9 +171,9 @@ key_card_permissions:
     - ArmoryLevelThree
 ```
 
-
+Previous version
 ``` 
-  Last version
+
   card_permissions:
     KeycardJanitor:
     - 16
@@ -255,7 +255,7 @@ key_card_permissions:
     
 ```
 
-Previous version: 
+Original version:
 
 ```
 	
