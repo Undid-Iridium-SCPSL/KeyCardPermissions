@@ -1,5 +1,5 @@
 # KeyCardPermissions
-Modify KeyCard Permissions Exiled4+
+Modify KeyCard Permissions Exiled5+
 
 ![KEYCARDPERMISSIONS LATEST](https://img.shields.io/github/v/release/Undid-Iridium/KeyCardPermissions?include_prereleases&style=flat-square)
 ![KEYCARDPERMISSIONS LINES](https://img.shields.io/tokei/lines/github/Undid-Iridium/KeyCardPermissions)
@@ -14,8 +14,8 @@ Place the "KeyCardPermissions.dll" file in your Plugins folder.
 
 
 ## REQUIREMENTS
-* Exiled: V4.2.0
-* SCP:SL Server: V11.1.0
+* Exiled: V5.1.3
+* SCP:SL Server: V12.0.0
 
 
 ## Config
