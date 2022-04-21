@@ -18,7 +18,7 @@ namespace KeyCardPermissions.Extensions
 
 
 
-            Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
+            Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.Instance.Config.CardPermissions;
             if (config_keys == null || config_keys.Count == 0)
             {
                 return false;

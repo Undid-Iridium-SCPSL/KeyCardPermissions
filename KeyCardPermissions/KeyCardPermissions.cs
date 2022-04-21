@@ -10,19 +10,24 @@ namespace KeyCardPermissions
     {
 
 
-        public static Config early_config;
+        private Harmony harmony;
 
         /// <summary>
-        /// Medium priority, lower prioritys mean faster loadin
+        /// Gets a static instance of the <see cref="Plugin"/> class.
         /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Medium;
+        public static KeyCardPermissions Instance { get; private set; }
 
+        /// <inheritdoc />
+        public override string Author => "Undid-Iridium";
 
+        /// <inheritdoc />
+        public override string Name => "CleanupUtility";
 
-        private Harmony harmony;
-        private string harmony_id = "com.Undid-Iridium.KeyCardPermissions";
+        /// <inheritdoc />
+        public override Version RequiredExiledVersion { get; } = new Version(5, 1, 3);
 
-        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
+        /// <inheritdoc />
+        public override Version Version { get; } = new Version(1, 1, 4);
 
 
         /// <summary>
@@ -30,8 +35,9 @@ namespace KeyCardPermissions
         /// </summary>
         public override void OnEnabled()
         {
+            Instance = this;
             RegisterEvents();
-            harmony = new Harmony(harmony_id);
+            harmony = new Harmony($"com.Undid-Iridium.KeyCardPermissions.{DateTime.UtcNow.Ticks}");
             harmony.PatchAll();
             base.OnEnabled();
 
@@ -44,6 +50,7 @@ namespace KeyCardPermissions
             UnRegisterEvents();
             harmony.UnpatchAll(harmony.Id);
             harmony = null;
+            Instance = null;
             base.OnDisabled();
         }
 
@@ -56,15 +63,8 @@ namespace KeyCardPermissions
         /// </summary>
         public void RegisterEvents()
         {
-            // Register the event handler class. And add the event,
-            // to the EXILED_Events event listener so we get the event.
-            if (!Config.IsEnabled)
-            {
-                return;
-            }
-            early_config = Config;
 
-            Handler = new EventsHandler(Config);
+            Handler = new EventsHandler(KeyCardPermissions.Instance.Config);
             Handler.Start();
 
             Log.Info("KeyCardPermissions has been loaded");
