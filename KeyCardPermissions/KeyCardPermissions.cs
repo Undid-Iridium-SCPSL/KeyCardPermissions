@@ -21,7 +21,7 @@ namespace KeyCardPermissions
         public override string Author => "Undid-Iridium";
 
         /// <inheritdoc />
-        public override string Name => "CleanupUtility";
+        public override string Name => "KeyCardPermissions";
 
         /// <inheritdoc />
         public override Version RequiredExiledVersion { get; } = new Version(5, 1, 3);
