@@ -26,17 +26,16 @@ namespace KeyCardPermissions.Patches
 
             try
             {
-                KeyCardPermissions.early_config.ProgramLevel.TryGetValue("Keycard_Config", out bool is_enabled);
+                KeyCardPermissions.Instance.Config.ProgramLevel.TryGetValue("Keycard_Config", out bool is_enabled);
 
                 if (!is_enabled)
                 {
                     return;
                 }
 
-                Dictionary<global::ItemType, InventorySystem.Items.ItemBase> curr_loaded_items =
-                    (Dictionary<ItemType, InventorySystem.Items.ItemBase>)Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").GetValue();
+                Dictionary<global::ItemType, InventorySystem.Items.ItemBase> curr_loaded_items = InventoryItemLoader._loadedItems;
 
-                Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
+                Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.Instance.Config.CardPermissions;
                 if (config_keys == null || config_keys.Count == 0)
                 {
                     return;
@@ -65,8 +64,7 @@ namespace KeyCardPermissions.Patches
                         curr_loaded_items[associated_role] = current_keycard;
                     }
                 }
-
-                Traverse.Create(typeof(InventoryItemLoader)).Field("_loadedItems").SetInstanceField("_loadedItems", curr_loaded_items);
+                InventoryItemLoader._loadedItems = curr_loaded_items;
             }
             catch (Exception harmony_error)
             {

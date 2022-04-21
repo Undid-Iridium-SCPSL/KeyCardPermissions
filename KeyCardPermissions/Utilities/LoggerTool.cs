@@ -36,7 +36,7 @@ namespace KeyCardPermissions.Utilities
         {
             if (config == null)
             {
-                config = KeyCardPermissions.early_config;
+                config = KeyCardPermissions.Instance.Config;
             }
 
             if (config.debug_enabled)

@@ -17,7 +17,7 @@ namespace KeyCardPermissions.Extensions
         /// <returns></returns>
         public static bool ModifyInventoryKeycardPermissions(this Player player, Config curr_config)
         {
-            Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.early_config.CardPermissions;
+            Dictionary<ItemType, KeycardPermissions[]> config_keys = KeyCardPermissions.Instance.Config.CardPermissions;
             if (config_keys == null || config_keys.Count == 0)
             {
                 return false;
